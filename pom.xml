@@ -16,6 +16,7 @@
         <module>dept-provider-8202</module>
         <module>dept-consumer-7201</module>
         <module>common</module>
+        <module>test-develop</module>
     </modules>
 
     <!-- 统一管理jar包版本 -->
