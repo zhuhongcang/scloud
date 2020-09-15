@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhc.dao.DeptMapper">
+
+  <resultMap id="BaseResultMap" type="com.zhc.model.Dept">
+	<id column="id" jdbcType="BIGINT" property="id" />
+	<result column="name" jdbcType="VARCHAR" property="name" />
+	<result column="descript" jdbcType="VARCHAR" property="descript" />
+	<result column="create_auid" jdbcType="BIGINT" property="createAuid" />
+	<result column="create_name" jdbcType="VARCHAR" property="createName" />
+	<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  
+  <insert id="add" parameterType="com.zhc.model.Dept">
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="descript != null">
+        descript,
+      </if>
+      <if test="createAuid != null">
+        create_auid,
+      </if>
+      <if test="createName != null">
+        create_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null">
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="createAuid != null">
+        #{createAuid,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from dept
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  
+  <update id="update" parameterType="com.zhc.model.Dept">
+    update dept
+    <set>
+      <if test="id != null">
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="descript != null">
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="createAuid != null">
+        create_auid = #{createAuid,jdbcType=BIGINT},
+      </if>
+      <if test="createName != null">
+        create_name = #{createName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from dept
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="findPage" resultMap="BaseResultMap">
+    select * from dept
+  </select>
+  
+</mapper>
